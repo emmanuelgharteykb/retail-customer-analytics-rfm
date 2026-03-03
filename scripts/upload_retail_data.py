@@ -5,7 +5,7 @@ import pandas_gbq
 # 1. Load the data 
 # Note: Ensure the file is in the same folder as this script
 print("Loading data from online_retail.xlsx...")
-df = pd.read_excel('online_retail.xlsx')
+df = pd.read_excel('../data/online_retail.xlsx')
 
 # 2. Basic Cleaning for Analytics
 print("Cleaning data...")
