@@ -1,33 +1,47 @@
 import pandas as pd
-from google.cloud import bigquery
+from google.oauth2 import service_account
 import pandas_gbq
+import os
+import sys
 
-# 1. Load the data 
-# Note: Ensure the file is in the same folder as this script
-print("Loading data from online_retail.xlsx...")
-df = pd.read_excel('../data/online_retail.xlsx')
+# --- 1. CONFIGURATION ---
+# Your updated Project ID
+PROJECT_ID = 'retail-analytics-project-101' 
+TABLE_ID = 'retail_analytics.raw_transactions'
 
-# 2. Basic Cleaning for Analytics
-print("Cleaning data...")
-# Remove rows with no CustomerID (essential for RFM analysis)
-df = df.dropna(subset=['CustomerID'])
+# Define absolute paths to prevent "File Not Found" errors
+BASE_DIR = os.path.expanduser('~/retail-customer-analytics-rfm')
+KEY_PATH = os.path.join(BASE_DIR, 'service_account.json')
+DATA_PATH = os.path.join(BASE_DIR, 'data/online_retail.xlsx')
 
-# Convert CustomerID to integer (removes the .0)
-df['CustomerID'] = df['CustomerID'].astype(int)
+# --- 2. AUTHENTICATION ---
+if not os.path.exists(KEY_PATH):
+    print(f"❌ ERROR: Key file not found at {KEY_PATH}")
+    sys.exit(1)
 
-# Filter out "Cancelled" orders (StockCodes starting with 'C')
-# This ensures our Revenue metrics aren't skewed by returns
-df = df[~df['InvoiceNo'].astype(str).str.startswith('C')]
+print("🔐 Authenticating using service_account.json...")
+credentials = service_account.Credentials.from_service_account_file(KEY_PATH)
 
-# 3. BigQuery Configuration
-# Replace 'your-project-id' with your actual Google Cloud Project ID
-project_id = 'your-project-id' 
-table_id = 'retail_analytics.raw_transactions'
+# --- 3. LOAD & CLEAN DATA ---
+try:
+    print(f"📂 Loading data...")
+    df = pd.read_excel(DATA_PATH, engine='openpyxl')
+    
+    print(f"🧹 Cleaning {len(df)} rows...")
+    df = df.dropna(subset=['CustomerID'])
+    df['CustomerID'] = df['CustomerID'].astype(int)
+    df = df[~df['InvoiceNo'].astype(str).str.startswith('C')]
+    
+    # --- 4. UPLOAD ---
+    print(f"🚀 Uploading to BigQuery: {PROJECT_ID}...")
+    df.to_gbq(
+        TABLE_ID, 
+        project_id=PROJECT_ID, 
+        if_exists='replace', 
+        credentials=credentials,
+        progress_bar=True
+    )
+    print("✅ Success! Data is live in BigQuery.")
 
-# 4. Upload to BigQuery
-print(f"Uploading {len(df)} cleaned rows to BigQuery...")
-
-# Using 'replace' so you can run this script multiple times if needed
-df.to_gbq(table_id, project_id=project_id, if_exists='replace')
-
-print("🚀 Success! Data is now live in BigQuery.")
+except Exception as e:
+    print(f"❌ Error: {e}")
