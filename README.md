@@ -14,7 +14,7 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 
 ## 📈 5-Day Roadmap
 - [x] **Day 1: Data Ingestion & Cloud Environment Setup** (Completed)
-- [ ] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling
+- [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling
 - [ ] **Day 3:** The RFM Engine (Segmentation Logic)
 - [ ] **Day 4:** Live Dashboard Development
 - [ ] **Day 5:** Insights, Documentation & Case Study
@@ -36,6 +36,19 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
     * **System Time Synchronization:** Used `timedatectl` to sync VM clocks for secure API handshakes.
     * **403 Access Denied:** Troubleshot BigQuery API permissions and dataset accessibility.
 
+## 🛠 Technical Skills Demonstrated (Day 2)
+### 🔍 Business Intelligence & Data Auditing
+* **Data Integrity Validation:** Executed SQL audit scripts in BigQuery to verify 0% null `CustomerIDs` and confirm date ranges (Dec 2010 – Dec 2011).
+* **KPI Baseline Engineering:** Calculated core business metrics including Total Revenue (~£891k), Unique Customers (4,339), and Average Order Value (£480).
+* **Trend Analysis:** Identified a 104% revenue surge in Q4 (November peak), providing critical context for "Recency" weighting in the upcoming model.
+
+### 📈 Retention & Behavioral Analytics
+* **Frequency Distribution:** Mapped the "Loyalty Gap," revealing that 34% of the base are one-time shoppers, while a high-value "Elite" group of **1.2% have 10+ orders.**
+* **Churn Identification:** Quantified "Single-Purchase Churn" as a primary business risk, setting the stage for targeted re-engagement strategies in Day 3.
+
+### 📂 Professional SQL Version Control
+* **Modular Scripting:** Organized analytical queries into a numbered sequence (`01_data_audit`, `02_executive_kpi_summary`, `03_monthly_sales_trends`, and `04_customer_loyalty_baseline`) for reproducible research.
+* **Documentation:** Implemented header comments and descriptive aliases in SQL to ensure team-wide readability.
 ---
 
 ## 📂 Project Structure
@@ -43,7 +56,10 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 /scripts
   └── upload_retail_data.py   # Secure ETL script using Service Account keys
 /sql
-  └── (Coming Day 2)           # Descriptive Analysis queries
+  ├── 01_data_audit.sql                   # Verification of data hygiene
+  ├── 02_executive_kpi_summary.sql        # High-level KPI calculations
+  ├── 03_monthly_sales_trend.sql          # Monthly revenue and order growth
+  └── 04_customer_loyalty_baseline.sql    # Distribution of purchase frequency
 /data
   └── (Ignored)               # Raw .xlsx dataset
 service_account.json          # (Ignored via .gitignore) Cloud Credentials
