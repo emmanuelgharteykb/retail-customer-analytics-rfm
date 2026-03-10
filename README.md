@@ -14,8 +14,8 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 
 ## 📈 5-Day Roadmap
 - [x] **Day 1: Data Ingestion & Cloud Environment Setup** (Completed)
-- [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling
-- [ ] **Day 3:** The RFM Engine (Segmentation Logic)
+- [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling (Completed)
+- [x] **Day 3:** The RFM Engine (Segmentation Logic) (Completed)
 - [ ] **Day 4:** Live Dashboard Development
 - [ ] **Day 5:** Insights, Documentation & Case Study
 
@@ -49,6 +49,17 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 ### 📂 Professional SQL Version Control
 * **Modular Scripting:** Organized analytical queries into a numbered sequence (`01_data_audit`, `02_executive_kpi_summary`, `03_monthly_sales_trends`, and `04_customer_loyalty_baseline`) for reproducible research.
 * **Documentation:** Implemented header comments and descriptive aliases in SQL to ensure team-wide readability.
+
+## 🛠 Technical Skills Demonstrated (Day 3)
+### 🧠 Algorithmic Customer Scoring
+* **Feature Engineering:** Developed a multi-step SQL pipeline to calculate **Recency** (days since last purchase), **Frequency** (total unique orders), and **Monetary** (total spend) per customer.
+* **Statistical Bucketing:** Implemented the `NTILE(5)` window function to distribute the customer base into five equal quintiles, assigning scores from 1 (lowest) to 5 (highest).
+* **RFM Cell Generation:** Used string concatenation to create unique behavioral IDs (e.g., '555' for Champions, '111' for Lost) for granular targeting.
+
+### 💰 Revenue Contribution Analysis
+* **The Pareto Check:** Engineered a contribution query that revealed a high revenue concentration: **7.97% of customers (Loyal Customers) generate 43.76% of total revenue.**
+* **Aggregated Business Logic:** Used CTEs (`WITH clauses`) to compare segment-specific metrics against global store totals in a single execution.
+* **Data-Driven Strategy:** Identified the "Loyal Customers" segment (346 customers) responsible for almost **£4 million** in revenue, providing a clear target for high-ROI loyalty marketing.
 ---
 
 ## 📂 Project Structure
@@ -59,7 +70,9 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
   ├── 01_data_audit.sql                   # Verification of data hygiene
   ├── 02_executive_kpi_summary.sql        # High-level KPI calculations
   ├── 03_monthly_sales_trend.sql          # Monthly revenue and order growth
-  └── 04_customer_loyalty_baseline.sql    # Distribution of purchase frequency
+  ├── 04_loyalty_baseline.sql             # Distribution of purchase frequency
+  ├── 05_rfm_model_generation.sql         # Scoring every single customer on a scale of 1-5
+  └── 06_customer_loyalty_count.sql       # Knowing total number of loyal customers with revenue they generate
 /data
   └── (Ignored)               # Raw .xlsx dataset
 service_account.json          # (Ignored via .gitignore) Cloud Credentials
