@@ -10,13 +10,13 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 * **Data Ingestion:** Python (Pandas, OpenPyXL, Pandas-GBQ)
 * **Cloud Warehouse:** Google BigQuery (SQL)
 * **Security:** GCP IAM & Service Accounts
-* **BI Visualization:** Looker Studio / Power BI (Coming Soon)
+* **BI Visualization:** Looker Studio
 
 ## 📈 5-Day Roadmap
 - [x] **Day 1: Data Ingestion & Cloud Environment Setup** (Completed)
 - [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling (Completed)
 - [x] **Day 3:** The RFM Engine (Segmentation Logic) (Completed)
-- [ ] **Day 4:** Live Dashboard Development
+- [x] **Day 4:** Live Dashboard Development
 - [ ] **Day 5:** Insights, Documentation & Case Study
 
 ---
@@ -60,6 +60,19 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 * **The Pareto Check:** Engineered a contribution query that revealed a high revenue concentration: **7.97% of customers (Loyal Customers) generate 43.76% of total revenue.**
 * **Aggregated Business Logic:** Used CTEs (`WITH clauses`) to compare segment-specific metrics against global store totals in a single execution.
 * **Data-Driven Strategy:** Identified the "Loyal Customers" segment (346 customers) responsible for almost **£4 million** in revenue, providing a clear target for high-ROI loyalty marketing.
+
+
+## 🛠 Technical Skills Demonstrated (Day 4)
+### 🎨 Reporting Layer Architecture
+* **Persistent Data Modeling:** Engineered a reporting layer using `CREATE OR REPLACE VIEW` in BigQuery. This decouples complex SQL logic from the visualization tool, ensuring the dashboard remains high-performance and "DRY" (Don't Repeat Yourself).
+* **Data Translation:** Implemented CASE statements within the view to translate raw RFM scores into human-readable business segments (e.g., '555' → 'Champions'), ensuring the dashboard is accessible to non-technical stakeholders.
+
+### 📊 Business Intelligence & UI/UX Design
+* **Executive Summary Dashboard:** Developed a live interactive dashboard in **Looker Studio** featuring a "Command Center" layout:
+    * **KPI Scorecards:** Real-time tracking of Total Revenue (£8.9M), Unique Customers (4,339), and Avg. Recency (93.04 days).
+    * **Revenue Treemap:** Visualized customer density to identify which groups dominate the market share.
+    * **Ranked Bar Charts:** Demonstrated the Pareto principle by highlighting the revenue concentration of "Champions" vs "At Risk" customers.
+* **Interactive Data Exploration:** Configured **Cross-Filtering** and **Interactions**, allowing users to click on specific segments to update the entire report's metrics instantly.
 ---
 
 ## 📂 Project Structure
@@ -67,12 +80,13 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 /scripts
   └── upload_retail_data.py   # Secure ETL script using Service Account keys
 /sql
-  ├── 01_data_audit.sql                   # Verification of data hygiene
-  ├── 02_executive_kpi_summary.sql        # High-level KPI calculations
-  ├── 03_monthly_sales_trend.sql          # Monthly revenue and order growth
-  ├── 04_loyalty_baseline.sql             # Distribution of purchase frequency
-  ├── 05_rfm_model_generation.sql         # Scoring every single customer on a scale of 1-5
-  └── 06_customer_loyalty_count.sql       # Knowing total number of loyal customers with revenue they generate
+  ├── 01_data_audit.sql                # Verification of data hygiene
+  ├── 02_executive_kpi_summary.sql     # High-level KPI calculations
+  ├── 03_monthly_sales_trend.sql       # Monthly revenue and order growth
+  ├── 04_loyalty_baseline.sql          # Distribution of purchase frequency
+  ├── 05_rfm_model_generation.sql      # Scoring every single customer on a scale of 1-5
+  ├── 06_customer_loyalty_count.sql    # Knowing total number of loyal customers with revenue
+  └── 07_v_rfm_dashboard.sql           # CREATE VIEW for Looker Studio integration
 /data
   └── (Ignored)               # Raw .xlsx dataset
 service_account.json          # (Ignored via .gitignore) Cloud Credentials
