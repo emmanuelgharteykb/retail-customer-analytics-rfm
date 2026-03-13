@@ -73,7 +73,18 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
     * **Revenue Treemap:** Visualized customer density to identify which groups dominate the market share.
     * **Ranked Bar Charts:** Demonstrated the Pareto principle by highlighting the revenue concentration of "Champions" vs "At Risk" customers.
 * **Interactive Data Exploration:** Configured **Cross-Filtering** and **Interactions**, allowing users to click on specific segments to update the entire report's metrics instantly.
+
+
+## 🛠 Technical Skills Demonstrated (Day 5)
+### 📈 Strategic Case Study & Business Impact
+* **Revenue Concentration Analysis:** Identified that the **"Champions"** segment alone contributes over **£3.5M**—nearly 40% of the total £8.9M revenue—despite being a fraction of the total customer base.
+* **Growth Opportunity Mapping:** Identified the **"Potential Loyalists"** as the largest volume group. Proposed a strategy to convert 5% of this group into Champions, projecting an estimated revenue increase of **£400k+.**
+* **Churn Mitigation:** Quantified the "At Risk" segment (customers with >100 days since last purchase), providing a data-driven target list for automated re-engagement campaigns.
+* **Communication:** Translated technical metadata into an executive-style video demo and summary for non-technical stakeholders.
 ---
+### 🏆 Final Project Delivery
+* **Live Dashboard:** https://lookerstudio.google.com/reporting/529d5190-c779-4b8e-ad77-854ed556a227
+* **Demo Video:** https://www.loom.com/share/9bd94ec1d1374139aa52b34ea1a44f7a
 
 ## 📂 Project Structure
 ```text
