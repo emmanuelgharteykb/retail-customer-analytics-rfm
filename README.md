@@ -13,12 +13,11 @@ The goal is to move beyond "descriptive" charts and provide "prescriptive" insig
 * **BI Visualization:** Looker Studio
 
 ## 📈 5-Day Roadmap
-- [x] **Day 1: Data Ingestion & Cloud Environment Setup** (Completed)
-- [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling (Completed)
-- [x] **Day 3:** The RFM Engine (Segmentation Logic) (Completed)
-- [x] **Day 4:** Live Dashboard Development
-- [ ] **Day 5:** Insights, Documentation & Case Study
-
+- [x] **Day 1: Data Ingestion & Cloud Environment Setup** 
+- [x] **Day 2:** Exploratory Data Analysis (EDA) & SQL Modeling 
+- [x] **Day 3:** The RFM Engine (Segmentation Logic) 
+- [x] **Day 4:** Live Dashboard Development 
+- [x] **Day 5:** Insights, Documentation & Case Study
 ---
 
 ## 🛠 Technical Skills Demonstrated (Day 1)
